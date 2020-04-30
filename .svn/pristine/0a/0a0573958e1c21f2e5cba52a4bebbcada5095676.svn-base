@@ -1,0 +1,29 @@
+<template>
+    <div class="app-wrapper">
+      <side-bar class="sidebar-container"></side-bar>
+    </div>
+</template>
+
+<script>
+  import SideBar from 'views/layout/childComps/SideBar'
+  export default {
+    name: "Layout",
+    created() {
+      console.log(11)
+    },
+    components:{
+      SideBar
+    }
+  }
+</script>
+
+<style scoped>
+  .sidebar-container{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 180px;
+    overflow: hidden;
+  }
+</style>

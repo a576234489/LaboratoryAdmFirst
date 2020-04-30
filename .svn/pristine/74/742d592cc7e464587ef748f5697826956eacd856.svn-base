@@ -1,0 +1,66 @@
+import Vue from 'vue'
+import Router from 'vue-router'
+Vue.use(Router)
+
+import Layout from 'views/layout/Layout'
+const routes = [
+  {
+    path:'',
+    component:Layout,
+    hidden:true
+  },
+  {
+    path:'/test2',
+    component:Layout,
+    children:[
+      {
+        path:'home1',
+        component:Layout,
+        mata:{title:'用户4',icon:'home'},
+      }
+    ]
+  },
+  {
+    path:'/test',
+    component:Layout,
+    mata:{title:'测试',icon:'home'},
+    children:[
+      {
+        path:'home',
+        component:Layout,
+        mata:{title:'首页',icon:'home'},
+      },
+      {
+        path:'user',
+        component:Layout,
+        mata:{title:'用户',icon:'home'},
+      }
+    ]
+  },
+  {
+    path:'/test1',
+    component:Layout,
+    mata:{title:'用户1',icon:'home'},
+    children:[
+      {
+        path:'home1',
+        component:Layout,
+        mata:{title:'用户2',icon:'home'},
+      },
+      {
+        path:'user1',
+        component:Layout,
+        mata:{title:'用户3',icon:'home'},
+      }
+    ]
+  },
+
+
+]
+
+const router = new Router({
+  routes,
+  mode:'history'
+})
+
+export default router

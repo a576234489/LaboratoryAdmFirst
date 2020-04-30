@@ -1,0 +1,55 @@
+<template>
+  <div class="menu-wrapper">
+    <div v-for="item in routes" v-if="!item.hidden">
+      <router-link v-if="hasOneShowChildren(item.children)" :to="item.path+'/'+item.children[0].path">
+        <el-menu-item>
+          <svg-icon v-if="item.children[0].mata.icon" :icon-class="item.children[0].mata.icon"></svg-icon>
+          <span slot="title">{{item.children[0].mata.title}}</span>
+        </el-menu-item>
+      </router-link>
+
+      <el-submenu v-else :index="item.path">
+        <div slot="title">
+          <svg-icon v-if="item.children[0].mata.icon" :icon-class="item.children[0].mata.icon"></svg-icon>
+          <span>{{item.mata.title}}</span>
+        </div>
+        <div v-for="child in item.children" v-if="!child.hidden">
+          <router-link :to="item.path+'/'+child.path">
+            <el-menu-item>
+              <svg-icon v-if="item.children[0].mata.icon" :icon-class="item.children[0].mata.icon"></svg-icon>
+              <span>{{child.mata.title}}</span>
+            </el-menu-item>
+          </router-link>
+        </div>
+      </el-submenu>
+    </div>
+  </div>
+</template>
+
+<script>
+  export default {
+    name: "SideBarItem",
+    props:{
+      routes:{
+        type:Array,
+        default(){
+          return [];
+        }
+      },
+    },
+    methods:{
+      hasOneShowChildren(children){
+        const showChildren = children.filter(item=>{
+          return !item.hidden
+        })
+        if(showChildren.length == 1){
+          return true;
+        }
+        return false
+      }
+    }
+  }
+</script>
+
+<style scoped>
+</style>

@@ -1,0 +1,74 @@
+import Vue from 'vue'
+import Router from 'vue-router'
+Vue.use(Router)
+
+import Layout from 'views/layout/Layout'
+
+const HomePage = ()=>import('views/homePage/HomePage')
+const PlateformAccount = ()=>import('views/plateformAccount/PlateformAccount');
+const Role = ()=>import('views/role/Role')
+const UserLoginLog = ()=>import('views/userLoginLog/UserLoginLog')
+const UserOperationLog = ()=>import('views/userOperationLog/UserOperationLog')
+
+const routes = [
+  {
+    path:'',
+    component:Layout,
+    redirect:'/homePage',
+    children:[
+      {
+        path:'homePage',
+        name:'/',
+        component:HomePage,
+        meta:{title:'首页',icon:'home',affix:true},
+      }
+    ]
+  },
+  {
+    path:'/systemBasic',
+    component:Layout,
+    meta:{title:'系统基础管理',icon:'home'},
+    children:[
+      {
+        path:'plateformAccount',
+        component:PlateformAccount,
+        name:'systemBasic',
+        meta:{title:'平台账号管理',icon:'home'},
+      },
+      {
+        path:'role',
+        component:Role,
+        name:'systemBasic',
+        meta:{title:'角色管理',icon:'home'},
+      }
+    ]
+  },
+  {
+    path:'/logInformation',
+    component:Layout,
+    meta:{title:'日志信息管理',icon:'home'},
+    children:[
+      {
+        path:'userLoginLog',
+        component:UserLoginLog,
+        name:'logInformation',
+        meta:{title:'用户登录日志',icon:'home'},
+      },
+      {
+        path:'userOperationLog',
+        component:UserOperationLog,
+        name:'logInformation',
+        meta:{title:'用户操作日志',icon:'home'},
+      }
+    ]
+  },
+
+
+]
+
+const router = new Router({
+  routes,
+  mode:'history'
+})
+
+export default router

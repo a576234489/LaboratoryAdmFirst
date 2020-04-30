@@ -1,0 +1,14 @@
+export default {
+  addVisitedView({commit},view){
+    commit('addVisitedView',view)
+  },
+  delView({commit,state},view){
+    return new Promise(resolve => {
+      commit('delView',view);
+      resolve([...state.visitedViews])
+    })
+  },
+  toggleSideBar({commit}){
+    commit('toggleSideBar')
+  }
+}
